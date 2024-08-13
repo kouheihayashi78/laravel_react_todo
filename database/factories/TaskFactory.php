@@ -17,7 +17,10 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->realText(rand(15,40)), // ランダムなテキストの場合realText
+            'is_done' => $this->faker->boolean(10), // 引数にどのくらいの確率でtrueになるか指定できる
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
