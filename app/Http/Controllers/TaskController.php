@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
      * Task一覧を返す
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function index()
     {
@@ -21,19 +22,17 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Taskを登録する
+     *
+     * @param Request $request
+     * @return Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request)
-    {
-        //
+        $task = Task::create($request->all());
+        return $task
+            ? response()->json($task, 200)
+            : response()->json([], 500);
     }
 
     /**
@@ -53,18 +52,31 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * タスクを更新する
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return Illuminate\Http\JsonResponse
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
-        //
+        $task->title = $request->title;
+
+        return $task->update()
+            ? response()->json($task)
+            : response()->json([], 500);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * タスクを削除する
+     *
+     * @param Task $task
+     * @return Illuminate\Http\JsonResponse
      */
     public function destroy(Task $task)
     {
-        //
+        return $task->delete()
+            ? response()->json($task)
+            : response()->json([], 500);
     }
 }
