@@ -11,12 +11,13 @@ class TaskController extends Controller
     /**
      * Task一覧を返す
      *
-     * @return Task[]|\Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Support\Collection
      */
     public function index()
     {
         // Laravelではそのままreturnするだけでjsonに変換する
         return Task::orderByDesc('id')->get(); // 降順で取得
+
     }
 
     /**
