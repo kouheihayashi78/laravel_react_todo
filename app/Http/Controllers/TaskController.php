@@ -9,11 +9,14 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Task一覧を返す
+     *
+     * @return Task[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        //
+        // Laravelではそのままreturnするだけでjsonに変換する
+        return Task::orderByDesc('id')->get(); // 降順で取得
     }
 
     /**
