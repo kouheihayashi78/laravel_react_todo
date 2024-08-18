@@ -61,12 +61,13 @@ class TaskTest extends TestCase
      */
     public function testDelete()
     {
-        $tasks = Task::factory()->count(10)->create();
-        $response = $this->deleteJson("api/tasks/1");
+        $task = Task::factory()->create();  // タスクを一つ作成
+
+        $response = $this->deleteJson("api/tasks/{$task->id}");  // 作成したタスクのIDで削除リクエストを送信
         $response->assertStatus(200);
 
         $response = $this->getJson("api/tasks");
-        $response->assertJsonCount($tasks->count()-1);
+        $response->assertJsonCount(0);  // 残りのタスクが0になることを確認
 
     }
 }
