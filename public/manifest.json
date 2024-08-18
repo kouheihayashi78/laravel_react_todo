@@ -1,0 +1,13 @@
+{
+  "resources/sass/app.scss": {
+    "file": "css/app.css",
+    "src": "resources/sass/app.scss",
+    "isEntry": true
+  },
+  "resources/ts/index.tsx": {
+    "file": "js/index.js",
+    "name": "index",
+    "src": "resources/ts/index.tsx",
+    "isEntry": true
+  }
+}
