@@ -7,27 +7,28 @@ import HelpPage from "./pages/help";
 const Router = () => {
     return (
         <BrowserRouter>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">ホーム</Link>
-                        </li>
-                        <li>
-                            <Link to="/help">ヘルプ</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">ログイン</Link>
-                        </li>
-                    </ul>
-                </nav>
+            <header className="global-head">
+                <ul>
+                    <li>
+                        <Link to="/">ホーム</Link>
+                    </li>
+                    <li>
+                        <Link to="/help">ヘルプ</Link>
+                    </li>
+                    <li>
+                        <Link to="/login">ログイン</Link>
+                    </li>
+                    <li>
+                        <span>ログアウト</span>
+                    </li>
+                </ul>
+            </header>
 
-                <Routes>
-                    <Route path="/help" element={<HelpPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/" element={<TaskPage />} />
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/help" element={<HelpPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/" element={<TaskPage />} />
+            </Routes>
         </BrowserRouter>
     );
 };
