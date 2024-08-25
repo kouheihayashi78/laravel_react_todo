@@ -1,14 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-
-type Task = {
-    id: number
-    title: string
-    is_done: boolean
-    created_at: Date
-    updated_at: Date
-}
+import { Task } from "../../types/Task";
 
 const TaskPage: React.FC = () => {
     // useQueryを使うため、useEffectでの記述をコメントアウト
