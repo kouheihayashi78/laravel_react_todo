@@ -2,7 +2,10 @@ import React from "react";
 
 const HelpPage: React.FC = () => {
     return (
-        <h1>ヘルプ</h1>
+        <div className="align-center mt-50">
+            <h1>ヘルプページ</h1>
+            <p>このサイトはログインが必須です。</p>
+        </div>
     )
 };
 
