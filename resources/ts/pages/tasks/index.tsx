@@ -1,29 +1,9 @@
 import React from "react";
-import axios from "axios";
-import { useQuery } from "react-query";
-import { Task } from "../../types/Task";
+import { useTasks } from "../../queries/TaskQuery";
 
 const TaskPage: React.FC = () => {
-    // useQueryを使うため、useEffectでの記述をコメントアウト
-    /*
-    const [ tasks, setTasks ] = useState<Task[]>([]);
 
-    const getTasks = async (): Promise<void> => {
-        const res = await axios.get<Task[]>('api/tasks');
-        setTasks(res.data);
-    }
-    useEffect(() => {
-        getTasks();
-    }, []);
-    */
-
-    // 第一引数はkeyとなる文字列、第二引数は非同期処理
-    // useQueryから受け取る変数はdataとstatusで、dataにはtaskの一覧が入る
-    // data:tasksと記述し。tasksとして使うことができる
-    const { data:tasks, status } = useQuery('tasks', async (): Promise<Task[]> => {
-        const res = await axios.get<Task[]>('api/tasks');
-        return res.data;
-    })
+    const {data:tasks, status} = useTasks();
 
     if(status === 'loading') {
         return <div className="loader" />
